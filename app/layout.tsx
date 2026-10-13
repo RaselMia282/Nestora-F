@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body
-        className="min-h-screen flex flex-col bg-amber-600"
+        className="min-h-screen flex flex-col"
         style={{ backgroundColor: "#effdf2" }}
       >
         <Providers>

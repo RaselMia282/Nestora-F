@@ -1,10 +1,9 @@
+import RegisterForm from '@/src/features/auth/components/register-form';
 import React from 'react';
 
 const registerPage = () => {
     return (
-        <div>
-            <h1>register</h1>
-        </div>
+        <RegisterForm></RegisterForm>
     );
 };
 

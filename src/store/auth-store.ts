@@ -1,12 +1,13 @@
 
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { User } from "../features/auth/types/interface";
 
-export type User = {
-  id: string;
-  email: string;
-  role: "ADMIN" | "OWNER" | "TENANT";
-};
+// export type User = {
+//   id: string;
+//   email: string;
+//   role: "ADMIN" | "OWNER" | "TENANT";
+// };
 
 type AuthStore = {
   user: User | null;

@@ -1,11 +1,8 @@
-import React from 'react';
+import LoginForm from "@/src/features/auth/components/login-form";
+import React from "react";
 
 const loginPage = () => {
-    return (
-        <div>
-            <h1>login</h1>
-        </div>
-    );
+  return <LoginForm></LoginForm>;
 };
 
 export default loginPage;

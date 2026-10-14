@@ -36,3 +36,25 @@ export interface ApiError {
   };
   message?: string;
 }
+
+export interface User {
+  id: string;
+
+  email: string;
+  role: Role;
+}
+
+export interface LoginResponseData {
+  id: string;
+  email: string;
+  role: string;
+}
+
+export interface LoginApiResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    user: User;
+  };
+}

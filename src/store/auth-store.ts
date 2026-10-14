@@ -1,7 +1,7 @@
-
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { User } from "../features/auth/types/interface";
+export type { User };
 
 // export type User = {
 //   id: string;
@@ -9,10 +9,10 @@ import { User } from "../features/auth/types/interface";
 //   role: "ADMIN" | "OWNER" | "TENANT";
 // };
 
-type AuthStore = {
+export type AuthStore = {
   user: User | null;
   hasHydrated: boolean;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   logout: () => void;
   setHasHydrated: (value: boolean) => void;
 };

@@ -3,18 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+// import { useAuthStore, type User } from "@/src/store/auth-store";
+import { useLogout } from "@/src/features/auth/api/logout-user";
 import { useAuthStore, User } from "@/src/store/auth-store";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Find Properties", href: "/properties" },
-
   { label: "Find Roommates", href: "/roommates" },
-
   { label: "For Property Owners", href: "/for-owners" },
 ];
 
-// Role onujayi dropdown er link
 const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
   ADMIN: [
     { label: "Admin Dashboard", href: "/admin/dashboard" },
@@ -27,28 +26,31 @@ const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
     { label: "Add Property", href: "/owner/properties/new" },
   ],
   TENANT: [{ label: "Dashboard", href: "/tenant/dashboard" }],
+
+  MANAGER: [{ label: "Dashboard", href: "/manager/dashboard" }],
 };
 
 const ROLE_LABEL: Record<User["role"], string> = {
   ADMIN: "Admin",
   OWNER: "Property Owner",
   TENANT: "Tenant",
+  MANAGER: "Manager",
 };
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [prevPathname, setPrevPathname] = useState(pathname);
+  const { mutate: logoutResponse, isPending } = useLogout();
 
   const user = useAuthStore((s) => s.user);
   const hasHydrated = useAuthStore((s) => s.hasHydrated);
   const logout = useAuthStore((s) => s.logout);
 
-  const [menuOpen, setMenuOpen] = useState(false); // avatar dropdown
-  const [mobileOpen, setMobileOpen] = useState(false); // hamburger menu
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Bairer click ba Escape chaple dropdown bondho
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (
@@ -72,8 +74,6 @@ export default function Navbar() {
     };
   }, []);
 
-  // Page change hole menu bondho
-
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
     setMenuOpen(false);
@@ -81,10 +81,20 @@ export default function Navbar() {
   }
 
   const handleLogout = () => {
-    logout();
-    setMenuOpen(false);
-    setMobileOpen(false);
-    router.push("/");
+    logoutResponse(undefined, {
+      onSuccess: () => {
+        logout();
+        setMenuOpen(false);
+        setMobileOpen(false);
+        router.push("/login");
+      },
+      onError: () => {
+        logout();
+        setMenuOpen(false);
+        setMobileOpen(false);
+        router.push("/login");
+      },
+    });
   };
 
   const isActive = (href: string) =>
@@ -146,7 +156,6 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           {!hasHydrated ? (
-            // Hydration er age placeholder, jate layout lafiye na uthe
             <div
               className="h-9 w-36 animate-pulse rounded-md bg-[#e1efe1]"
               aria-hidden="true"
@@ -165,7 +174,9 @@ export default function Navbar() {
                 </span>
                 <svg
                   viewBox="0 0 24 24"
-                  className={`h-4 w-4 text-[#3d4f47] transition-transform ${menuOpen ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 text-[#3d4f47] transition-transform ${
+                    menuOpen ? "rotate-180" : ""
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -207,11 +218,12 @@ export default function Navbar() {
                   <div className="border-t border-[#eef5ee] py-1">
                     <button
                       type="button"
+                      disabled={isPending}
                       role="menuitem"
                       onClick={handleLogout}
-                      className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                      className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 cursor-pointer disabled:opacity-50"
                     >
-                      Log out
+                      {isPending ? "Logging out..." : "Log Out"}
                     </button>
                   </div>
                 </div>

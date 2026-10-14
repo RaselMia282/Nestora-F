@@ -18,7 +18,7 @@ export const useRegister = () => {
   return useMutation<RegisterApiResponse, ApiError, RegisterUserInput>({
     mutationFn: register,
     onSuccess: (response: RegisterApiResponse) => {
-      toast.success(response.message || "User register successful ");
+      toast.success(response.message || "Register successful ");
     },
     onError: (error: ApiError) => {
       const errorMessage =

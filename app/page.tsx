@@ -1,7 +1,5 @@
-
+import Hero from "@/src/Components/home/Hero";
 
 export default function Home() {
-  return (
-    <h1 className="text-5xl text-center">Nestora-Frontend</h1>
-  );
+  return <Hero></Hero>;
 }

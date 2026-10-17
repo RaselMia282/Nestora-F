@@ -61,3 +61,17 @@ export interface PropertiesApiResponse {
     meta: PaginationMeta;
   };
 }
+
+export type PropertyItem = {
+  id: string;
+  title: string;
+  city: string;
+  address: string;
+  rentAmount: number;
+  description?: string | null;
+  fullRent: number;
+  propertyImg?: string | null;
+  areaSqft?: number;
+  latitude?:number;
+  longitude?:number;
+};

@@ -1,62 +1,33 @@
-
 "use client";
 
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-} from "react-leaflet";
+import { useEffect, useState } from "react";
+import { PropertyItem } from "@/src/features/property/types/interface";
 
-import "leaflet/dist/leaflet.css";
+export default function PropertyMap({
+  properties,
+}: {
+  properties: PropertyItem[];
+}) {
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [MapContent, setMapContent] = useState<any>(null);
 
-export type MapProperty = {
-  id: string;
-  title: string;
-  latitude: number;
-  longitude: number;
-  rentAmount: number;
-};
+  useEffect(() => {
+    
+    import("./MapContent").then((mod) => {
+      setMapContent(() => mod.default);
+    });
+  }, []);
 
-type Props = {
-  properties: MapProperty[];
-};
+  
+  if (!MapContent) {
+    return (
+      <div className="w-full h-full bg-gray-100 animate-pulse rounded-xl flex items-center justify-center text-gray-500">
+        Loading Map...
+      </div>
+    );
+  }
 
-export default function PropertyMap({ properties }: Props) {
-  const center: [number, number] =
-    properties.length > 0
-      ? [properties[0].latitude, properties[0].longitude]
-      : [23.8103, 90.4125];
-
-  return (
-    <div className="h-[400px] w-full overflow-hidden rounded-xl lg:h-[calc(100vh-140px)]">
-      <MapContainer
-        center={center}
-        zoom={12}
-        scrollWheelZoom={false}
-        className="h-full w-full"
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {properties.map((property) => (
-          <Marker
-            key={property.id}
-            position={[
-              property.latitude,
-              property.longitude,
-            ]}
-          >
-            <Popup>
-              <strong>{property.title}</strong>
-              <br />
-              ৳{property.rentAmount.toLocaleString()}/month
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-    </div>
-  );
+ 
+  return <MapContent properties={properties} />;
 }

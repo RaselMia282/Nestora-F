@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -12,15 +11,19 @@ const Category = () => {
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category") ?? "";
 
-  const { data: response, isLoading, isError } = useGetPropertyCategories();
+  const {
+    data: response,
+    isLoading,
+    isError,
+  } = useGetPropertyCategories();
+
   const categories: ICategory[] = response?.data || [];
 
   const handleCategoryClick = (slug: string) => {
-    
     router.push(
       selectedCategory === slug
         ? "/properties"
-        : `/properties?category=${slug}`,
+        : `/properties?category=${encodeURIComponent(slug)}`,
     );
   };
 
@@ -30,6 +33,7 @@ const Category = () => {
         <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-800 mb-2">
           EXPLORE CATEGORIES
         </h4>
+
         <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-10 sm:mb-14">
           Browse by Living Style
         </h2>
@@ -84,7 +88,9 @@ const Category = () => {
 
                   <span
                     className={`mt-3 text-xs sm:text-sm font-semibold ${
-                      isSelected ? "text-emerald-700" : "text-slate-800"
+                      isSelected
+                        ? "text-emerald-700"
+                        : "text-slate-800"
                     }`}
                   >
                     {category.name}

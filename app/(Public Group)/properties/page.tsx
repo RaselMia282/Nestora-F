@@ -6,6 +6,7 @@ const findPropertyPage = () => {
     <div>
       <Suspense fallback={null}>
         <PropertiesPage></PropertiesPage>
+        
       </Suspense>
     </div>
   );

@@ -60,7 +60,7 @@ export default function RoomCard({ room }: { room: RoomItem }) {
           
           
           <Link 
-            href={`/properties/${room.property.id}`}
+            href={`/rooms/${room.id}`}
             className="bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
           >
             View Details

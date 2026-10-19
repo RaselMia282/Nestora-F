@@ -10,7 +10,7 @@ import { useAuthStore, User } from "@/src/store/auth-store";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Find Properties", href: "/properties" },
-  { label: "Find Roommates", href: "/roommates" },
+  { label: "Find Rooms", href: "/rooms" },
   { label: "For Property Owners", href: "/for-owners" },
 ];
 

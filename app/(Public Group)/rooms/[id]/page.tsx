@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Suspense } from "react";
 import { useParams } from "next/navigation";
-
+import { useState } from "react";
+import ApplyModal from "@/src/features/application/components/ApplyModal";
 import RoomDetailsHeader from "@/src/features/room-details/components/RoomDetailsHeader";
 import Spinner from "@/src/Components/shared/Spinner";
 import { useGetSingleRoom } from "@/src/features/room-details/api/details";
@@ -11,7 +13,7 @@ import PropertyMap from "@/src/Components/maps/PropertyMap";
 function RoomDetailsContent() {
   const params = useParams();
   const id = Array.isArray(params?.id) ? params.id[0] : params?.id;
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: response, isLoading, isError } = useGetSingleRoom(id as string);
   const room = response?.data;
 
@@ -56,9 +58,14 @@ function RoomDetailsContent() {
                   /month
                 </span>
               </p>
-              <button className="w-full bg-[#196c51] text-white py-3 rounded-lg font-semibold hover:bg-[#12503b] transition-colors mb-3">
+
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="w-full bg-[#196c51] text-white py-3 rounded-lg font-semibold hover:bg-[#12503b] transition-colors mb-3 cursor-pointer"
+              >
                 Apply Now
               </button>
+
               <button className="w-full bg-white border-2 border-[#196c51] text-[#196c51] py-3 rounded-lg font-semibold hover:bg-[#f0fdf4] transition-colors flex items-center justify-center gap-2">
                 💬 Contact Owner
               </button>
@@ -74,6 +81,13 @@ function RoomDetailsContent() {
                 </div>
               </div>
             </div>
+            <ApplyModal
+              isOpen={isModalOpen}
+              targetId={room.id}
+              onClose={() => setIsModalOpen(false)}
+
+              type="room"
+            />
 
             {/* 2. Location Map */}
             <div className="bg-white p-2 rounded-xl border border-gray-200 shadow-sm sticky">

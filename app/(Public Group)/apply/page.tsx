@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PropertyModal = () => {
+const applyPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const PropertyModal = () => {
     );
 };
 
-export default PropertyModal;
+export default applyPage;

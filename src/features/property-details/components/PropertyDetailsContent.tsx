@@ -1,5 +1,6 @@
 "use client";
-
+import { useState } from "react";
+import ApplyModal from "@/src/features/application/components/ApplyModal";
 import { useParams } from "next/navigation";
 import { usePropertyDetails } from "@/src/features/property-details/api/details";
 import PropertyHeader from "./PropertyHeader";
@@ -9,6 +10,7 @@ import Spinner from "@/src/Components/shared/Spinner";
 
 export default function PropertyDetailsContent() {
   const params = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const id = Array.isArray(params?.id) ? params.id[0] : params?.id;
 
   const {
@@ -19,9 +21,7 @@ export default function PropertyDetailsContent() {
   const property = response?.data;
 
   if (isLoading) {
-    return (
-      <Spinner></Spinner>
-    );
+    return <Spinner></Spinner>;
   }
 
   if (isError || !property) {
@@ -37,13 +37,11 @@ export default function PropertyDetailsContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
         <div className="lg:col-span-8">
           <PropertyHeader property={property} />
           <RoomList property={property} />
         </div>
 
-        
         <div className="lg:col-span-4 space-y-6">
           {/* ১. Rent Options Card */}
           <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
@@ -67,7 +65,10 @@ export default function PropertyDetailsContent() {
               </p>
             </div>
 
-            <button className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors mb-4">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors mb-4"
+            >
               Apply Now
             </button>
 
@@ -98,6 +99,12 @@ export default function PropertyDetailsContent() {
               💬 Message Owner
             </button>
           </div>
+          <ApplyModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            targetId={property.id} // 👈 এখানে property.id পাস করছি
+            type="property" // 👈 এখানে type="property" দিচ্ছি
+          />
 
           {/* ৩. Location Map Card */}
           <div className="bg-white p-2 rounded-xl border border-gray-200 shadow-sm">

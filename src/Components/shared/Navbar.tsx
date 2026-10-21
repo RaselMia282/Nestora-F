@@ -25,7 +25,7 @@ const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
     { label: "My Properties", href: "/owner/properties" },
     { label: "Add Property", href: "/owner/properties/new" },
   ],
-  TENANT: [{ label: "Dashboard", href: "/tenant/dashboard" }],
+  TENANT: [{ label: "Dashboard", href: "/dashboard/tenant" }],
 
   MANAGER: [{ label: "Dashboard", href: "/manager/dashboard" }],
 };

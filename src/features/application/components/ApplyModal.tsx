@@ -49,7 +49,7 @@ export default function ApplyModal({ isOpen, onClose, targetId, type }: ApplyMod
       {
         onSuccess: () => {
           onClose(); // Modal Close
-          router.push("/dashboard/applications"); // Redirect to Dashboard
+          router.push("/dashboard/tenant/applications"); // Redirect to Dashboard
         },
       }
     );

@@ -13,10 +13,10 @@ import { useGetTenantApplications } from "@/src/features/dashboard/api/tenant-ov
 export default function TenantApplicationsPage() {
   const { data: response, isLoading, isError } = useGetTenantApplications();
   
-  // API রেসপন্স থেকে ডেটা নেওয়া
+ 
   const applications = response?.data || [];
 
-  // স্ট্যাটাস অনুযায়ী কালার এবং আইকন ঠিক করা
+  
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "APPROVED":

@@ -158,6 +158,7 @@ export default function LoginForm() {
                     >
                       <option value={Role.TENANT}>Tenant</option>
                       <option value={Role.OWNER}>Owner</option>
+                      <option value={Role.ADMIN}>Admin</option>
                     </select>
                     {renderError(field.state.meta.errors)}
                   </div>

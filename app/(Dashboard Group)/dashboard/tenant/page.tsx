@@ -15,6 +15,7 @@ import {
   useGetTenantOverview, 
   useGetTenantApplications 
 } from "@/src/features/dashboard/api/tenant-overview";
+import Spinner from "@/src/Components/shared/Spinner";
 
 export default function TenantOverviewPage() {
   const { data: response, isLoading } = useGetTenantOverview();
@@ -24,7 +25,7 @@ export default function TenantOverviewPage() {
   const applications = appResponse?.data || []; 
 
   if (isLoading || appLoading) {
-    return <div className="text-center py-20 text-gray-500">Loading dashboard...</div>;
+    return <Spinner></Spinner>;
   }
 
   return (

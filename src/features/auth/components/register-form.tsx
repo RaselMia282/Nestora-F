@@ -271,8 +271,12 @@ export default function RegisterForm() {
                       }
                       className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                     >
-                      <option value={Role.TENANT}>Tenant & Resident</option>
-                      <option value={Role.OWNER}>Landlord & Manager</option>
+                      <option value={Role.TENANT}>Tenant</option>
+
+                      <option value={Role.ADMIN}>Admin</option>
+
+                      <option value={Role.OWNER}>Owner</option>
+
                     </select>
                     <p className="text-[11px] text-gray-400 mt-1">
                       Select your primary account purpose.

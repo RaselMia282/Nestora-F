@@ -16,14 +16,14 @@ const NAV_LINKS = [
 
 const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
   ADMIN: [
-    { label: "Admin Dashboard", href: "/admin/dashboard" },
-    { label: "Manage Users", href: "/admin/users" },
-    { label: "Manage Listings", href: "/admin/listings" },
+    { label: "Admin Dashboard", href: "/dashboard/admin" },
+    // { label: "Manage Users", href: "/dashboard/admin/users" },
+    // { label: "Manage Listings", href: "dashboard/admin/listings" },
   ],
   OWNER: [
-    { label: "Dashboard", href: "/owner/dashboard" },
-    { label: "My Properties", href: "/owner/properties" },
-    { label: "Add Property", href: "/owner/properties/new" },
+    { label: "Dashboard", href: "/dashboard/owner" },
+    { label: "My Properties", href: "dashboard/owner/properties" },
+    { label: "Add Property", href: "dashboard/owner/properties/new" },
   ],
   TENANT: [{ label: "Dashboard", href: "/dashboard/tenant" }],
 

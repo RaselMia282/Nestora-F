@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuthStore } from "@/src/store/auth-store"; // 👈 তোমার Zustand স্টোরের পাথ
+import { useAuthStore } from "@/src/store/auth-store"; // 
 import { 
   LayoutDashboard, 
   FileText, 
@@ -29,7 +29,7 @@ export default function DashboardSidebar() {
     { name: "My Profile", href: "/dashboard/tenant/profile", icon: User },
   ];
 
-  // ─── ২. ওনারের মেনু ───
+  
   const ownerMenu = [
     { name: "Overview", href: "/dashboard/owner", icon: LayoutDashboard },
     { name: "My Properties", href: "/dashboard/owner/properties", icon: Home },
@@ -45,18 +45,18 @@ export default function DashboardSidebar() {
     { name: "Verifications", href: "/dashboard/admin/verifications", icon: ShieldCheck },
   ];
 
-  // রোল অনুযায়ী মেনু সিলেক্ট করা
+  
   const getMenu = () => {
     if (user?.role === "OWNER") return ownerMenu;
     if (user?.role === "ADMIN") return adminMenu;
-    return tenantMenu; // ডিফল্ট টেন্যান্ট
+    return tenantMenu; 
   };
 
   const menuItems = getMenu();
 
   return (
     <>
-      {/* মোবাইলের জন্য টগল বাটন (নিচে ডানদিকে) */}
+      
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed bottom-6 right-6 z-50 bg-[#196c51] text-white p-3 rounded-full shadow-lg"
@@ -64,14 +64,14 @@ export default function DashboardSidebar() {
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
-      {/* সাইডবার */}
+      
       <aside
         className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none ${
           isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         }`}
       >
         <div className="h-full flex flex-col pt-6">
-          {/* সাইডবার হেডার */}
+          
           <div className="px-6 pb-6 border-b border-gray-100">
             <h2 className="text-xl font-bold text-gray-800">Dashboard</h2>
             <p className="text-sm text-[#196c51] font-medium capitalize">
@@ -79,7 +79,7 @@ export default function DashboardSidebar() {
             </p>
           </div>
 
-          {/* মেনু লিস্ট */}
+          
           <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             {menuItems.map((item) => {
               const isActive = pathname === item.href;
@@ -89,7 +89,7 @@ export default function DashboardSidebar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsOpen(false)} // মোবাইলে ক্লিক করলে বন্ধ হবে
+                  onClick={() => setIsOpen(false)} // 
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-[#196c51] text-white"
@@ -105,7 +105,7 @@ export default function DashboardSidebar() {
         </div>
       </aside>
 
-      {/* মোবাইলে সাইডবার ওপেন থাকলে কালো ব্যাকগ্রাউন্ড */}
+      
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}

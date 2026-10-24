@@ -66,3 +66,45 @@ export const useUpdateApplicationStatus = () => {
     },
   });
 };
+
+// ১. Pending Verifications List Hook
+export const getPendingVerifications = async () => {
+  return apiClient("/verification/pending-list", { method: "GET" });
+};
+
+export const useGetPendingVerifications = () => {
+  return useQuery({
+    queryKey: ["pending-verifications"],
+    queryFn: getPendingVerifications,
+  });
+};
+
+// ২. Update Verification Status Hook
+export const updateVerificationStatus = async ({
+  id,
+  status,
+}: {
+  id: string;
+  status: string;
+}) => {
+  return apiClient(`/verification/${id}/status`, {
+    method: "PATCH",
+    body: { status },
+  });
+};
+
+export const useUpdateVerificationStatus = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateVerificationStatus,
+    onSuccess: () => {
+      toast.success("Verification status updated successfully! 🎉");
+      queryClient.invalidateQueries({ queryKey: ["pending-verifications"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-overview"] });
+    },
+    onError: (error: any) => {
+      toast.error(error?.message || "Failed to update verification status.");
+    },
+  });
+};

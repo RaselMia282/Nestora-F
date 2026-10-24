@@ -20,13 +20,14 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useGetAllApplications, useUpdateApplicationStatus } from "@/src/features/dashboard/admin/api/admin-0verview";
+import { useGetAllApplications, useUpdateApplicationStatus } from "@/src/features/dashboard/admin/api/admin-overview";
+import Spinner from "@/src/Components/shared/Spinner";
 
 export default function AdminApplicationsPage() {
   const { data: response, isLoading, isError } = useGetAllApplications();
   const { mutate: updateStatus, isPending } = useUpdateApplicationStatus();
 
-  // AlertDialog স্টেট
+  
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedApp, setSelectedApp] = useState<{ id: string; status: "APPROVED" | "REJECTED" } | null>(null);
 
@@ -55,13 +56,13 @@ export default function AdminApplicationsPage() {
     }
   };
 
-  // বাটনে ক্লিক করলে AlertDialog ওপেন হবে
+  
   const handleActionClick = (id: string, status: "APPROVED" | "REJECTED") => {
     setSelectedApp({ id, status });
     setIsDialogOpen(true);
   };
 
-  // AlertDialog-এ Confirm করলে এই ফাংশন চলবে
+  
   const confirmAction = () => {
     if (selectedApp) {
       updateStatus(selectedApp);
@@ -69,7 +70,7 @@ export default function AdminApplicationsPage() {
     }
   };
 
-  if (isLoading) return <div className="text-center py-20 text-gray-500">Loading applications...</div>;
+  if (isLoading) return <Spinner size="lg"></Spinner>;
   if (isError) return <div className="text-center py-20 text-red-500">Failed to load applications.</div>;
 
   return (

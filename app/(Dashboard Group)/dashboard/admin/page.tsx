@@ -1,6 +1,7 @@
 "use client";
 
-import { useGetAdminOverview } from "@/src/features/dashboard/admin/api/admin-0verview";
+import Spinner from "@/src/Components/shared/Spinner";
+import { useGetAdminOverview } from "@/src/features/dashboard/admin/api/admin-overview";
 import { 
   Users, 
   Home, 
@@ -27,17 +28,17 @@ export default function AdminOverviewPage() {
   const data = response?.data;
 
   if (isLoading) {
-    return <div className="text-center py-20 text-gray-500">Loading admin dashboard...</div>;
+    return <Spinner size="lg"></Spinner>;
   }
 
-  // ১. বার চার্টের ডেটা (আমাদের কাছে যা আছে)
+  
   const barData = [
     { name: "Users", count: data?.totalUsers || 0 },
     { name: "Properties", count: data?.totalProperties || 0 },
     { name: "Applications", count: data?.pendingApplications || 0 },
   ];
 
-  // ২. পাই চার্টের ডেটা (পেন্ডিং NID এবং সফল পেমেন্ট)
+  
   const pieData = [
     { name: "Pending NIDs", value: data?.pendingNidVerifications || 0 },
     { name: "Completed Payments", value: data?.completedPayments || 0 },
@@ -100,7 +101,7 @@ export default function AdminOverviewPage() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         
-        {/* Bar Chart (প্ল্যাটফর্মের মূল ডেটা) */}
+        
         <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
           <h2 className="text-lg font-bold text-gray-800 mb-6">Platform Data</h2>
           <div className="h-[300px] w-full">

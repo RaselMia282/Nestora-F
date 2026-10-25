@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Find Properties", href: "/properties" },
   { label: "Find Rooms", href: "/rooms" },
-  { label: "For Property Owners", href: "/for-owners" },
+  // { label: "For Property Owners", href: "/for-owners" },
 ];
 
 const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
@@ -22,8 +22,8 @@ const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
   ],
   OWNER: [
     { label: "Dashboard", href: "/dashboard/owner" },
-    { label: "My Properties", href: "dashboard/owner/properties" },
-    { label: "Add Property", href: "dashboard/owner/properties/new" },
+    // { label: "My Properties", href: "dashboard/owner/properties" },
+    // { label: "Add Property", href: "dashboard/owner/properties/new" },
   ],
   TENANT: [{ label: "Dashboard", href: "/dashboard/tenant" }],
 

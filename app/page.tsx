@@ -1,4 +1,5 @@
 import Hero from "@/src/Components/home/Hero";
+import FeaturedProperties from "@/src/Components/home/HomesWorth";
 import Category from "@/src/features/property-category/components/Category";
 import { Suspense } from "react";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <Suspense fallback={null}>
         <Category></Category>
       </Suspense>
+      <FeaturedProperties></FeaturedProperties>
     </>
   );
 }

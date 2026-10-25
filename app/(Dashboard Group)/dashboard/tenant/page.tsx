@@ -25,7 +25,7 @@ export default function TenantOverviewPage() {
   const applications = appResponse?.data || []; 
 
   if (isLoading || appLoading) {
-    return <Spinner></Spinner>;
+    return <Spinner size="lg"></Spinner>;
   }
 
   return (

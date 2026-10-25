@@ -158,7 +158,7 @@ const PropertyPage = () => {
             onClick={() => setViewMode("list")}
             className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
               viewMode === "list"
-                ? "bg-white shadow text-blue-600"
+                ? "bg-white shadow text-green-600"
                 : "text-gray-500"
             }`}
           >
@@ -168,7 +168,7 @@ const PropertyPage = () => {
             onClick={() => setViewMode("map")}
             className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
               viewMode === "map"
-                ? "bg-white shadow text-blue-600"
+                ? "bg-white shadow text-green-600"
                 : "text-gray-500"
             }`}
           >
@@ -232,14 +232,14 @@ const PropertyPage = () => {
                         </p>
                       </div>
                       <div className="mt-4 flex items-center justify-between">
-                        <p className="text-blue-600 font-bold text-lg">
+                        <p className="text-green-600 font-bold text-lg">
                           ৳ {p.fullRent}
                         </p>
                         {/* <button className="text-sm text-blue-600 font-medium hover:underline">View Details →</button> */}
 
                         <Link
                           href={`/properties/${p.id}`}
-                          className="text-sm text-blue-600 font-medium hover:underline"
+                          className="text-sm text-green-600 font-medium hover:underline"
                         >
                           View Details →
                         </Link>

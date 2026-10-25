@@ -26,7 +26,7 @@ export default function TenantProfilePage() {
   };
 
   if (isLoading) {
-    return <Spinner></Spinner>;
+    return <Spinner size="lg"></Spinner>;
   }
 
   

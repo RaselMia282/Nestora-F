@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useGetTenantApplications } from "@/src/features/dashboard/api/tenant-overview";
+import Spinner from "@/src/Components/shared/Spinner";
 
 export default function TenantApplicationsPage() {
   const { data: response, isLoading, isError } = useGetTenantApplications();
@@ -43,7 +44,7 @@ export default function TenantApplicationsPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <p className="text-gray-500">Loading applications...</p>
+        <Spinner size="lg"></Spinner>
       </div>
     );
   }

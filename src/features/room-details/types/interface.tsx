@@ -10,6 +10,7 @@ export type SingleRoomDetails = {
     title: string;
     address: string;
     city: string;
+    propertyImg?: string | null;
     description: string | null;
     latitude: number | null;
     longitude: number | null;

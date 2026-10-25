@@ -36,7 +36,6 @@ export const useGetTenantApplications = () => {
   });
 };
 
-
 export const getMyProfile = async () => {
   return apiClient("/auth/me", { method: "GET" });
 };
@@ -48,11 +47,8 @@ export const useGetMyProfile = () => {
   });
 };
 
-
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-
 
 export const updateProfileImage = async (file: File) => {
   const formData = new FormData();
@@ -71,11 +67,45 @@ export const useUpdateProfileImage = () => {
     mutationFn: updateProfileImage,
     onSuccess: () => {
       toast.success("Profile image updated successfully!");
-      
+
       queryClient.invalidateQueries({ queryKey: ["my-profile"] });
     },
     onError: (error: any) => {
       toast.error(error?.message || "Failed to update profile image. ❌");
+    },
+  });
+};
+
+// Payments List Hook
+// export const getTenantPayments = async () => {
+//   return apiClient("/payment", { method: "GET" });
+// };
+
+// export const useGetTenantPayments = () => {
+//   return useQuery({
+//     queryKey: ["tenant-payments"],
+//     queryFn: getTenantPayments,
+//   });
+// };
+
+// Create Payment (Stripe Checkout) Hook
+export const createPayment = async (leaseId: string) => {
+  return apiClient("/payment", {
+    method: "POST",
+    body: { leaseId },
+  });
+};
+
+export const useCreatePayment = () => {
+  return useMutation({
+    mutationFn: createPayment,
+    onSuccess: (res: any) => {
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
+      }
+    },
+    onError: (error: any) => {
+      toast.error(error?.message || "Failed to create payment session.");
     },
   });
 };

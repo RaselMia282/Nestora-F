@@ -22,7 +22,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 bg-[#effdf2]">
+    <section className="py-24 bg-[#effdf2]">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         
         {/* Header */}

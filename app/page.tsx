@@ -17,8 +17,8 @@ export default function Home() {
       <FeaturedProperties></FeaturedProperties>
       <MoreThanARoom></MoreThanARoom>
       <HowItWorks></HowItWorks>
-      <OwnerCTA></OwnerCTA>
       <Testimonials></Testimonials>
+      <OwnerCTA></OwnerCTA>
     </>
   );
 }

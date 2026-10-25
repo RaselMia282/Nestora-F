@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-// import { useAuthStore, type User } from "@/src/store/auth-store";
+
 import { useLogout } from "@/src/features/auth/api/logout-user";
 import { useAuthStore, User } from "@/src/store/auth-store";
 
@@ -11,19 +11,17 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Find Properties", href: "/properties" },
   { label: "Find Rooms", href: "/rooms" },
-  // { label: "For Property Owners", href: "/for-owners" },
+  
 ];
 
 const ROLE_LINKS: Record<User["role"], { label: string; href: string }[]> = {
   ADMIN: [
     { label: "Admin Dashboard", href: "/dashboard/admin" },
-    // { label: "Manage Users", href: "/dashboard/admin/users" },
-    // { label: "Manage Listings", href: "dashboard/admin/listings" },
+    
   ],
   OWNER: [
     { label: "Dashboard", href: "/dashboard/owner" },
-    // { label: "My Properties", href: "dashboard/owner/properties" },
-    // { label: "Add Property", href: "dashboard/owner/properties/new" },
+    
   ],
   TENANT: [{ label: "Dashboard", href: "/dashboard/tenant" }],
 

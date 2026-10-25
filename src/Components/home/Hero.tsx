@@ -9,7 +9,7 @@ import HeroImg from "../../../public/hero.png";
 
 const Hero = () => {
   return (
-    <section className=" py-12 lg:py-20 px-3 sm:px-6 lg:px-8 overflow-hidden border-b-4 border-amber-300">
+    <section className=" py-24 lg:py-20 px-3 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Left Column: Content */}
         <div className="space-y-6">
@@ -36,15 +36,15 @@ const Hero = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Link href="/rooms">
-              <Button className="bg-emerald-800 hover:bg-emerald-900 text-white px-7 py-3.5 rounded-xl font-semibold shadow-md transition">
+            <Link href="/properties">
+              <Button className="bg-emerald-800 hover:bg-emerald-900 text-white px-7 py-3.5 rounded-xl font-semibold shadow-md transition cursor-pointer">
                 Explore Homes
               </Button>
             </Link>
-            <Link href="/register">
+            <Link href="/rooms">
               <Button
                 variant="outline"
-                className="border-slate-300 hover:bg-slate-100 text-slate-700 px-7 py-3.5 rounded-xl font-semibold transition"
+                className="border-slate-300 hover:bg-slate-100 text-slate-700 px-7 py-3.5 rounded-xl font-semibold transition cursor-pointer"
               >
                 Explore Rooms
               </Button>
